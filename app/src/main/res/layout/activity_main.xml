@@ -16,8 +16,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="what are you like?"
+            android:text="      Which one do you like?"
+            android:textColor="?attr/colorError"
             android:textSize="30sp" />
+
         <ListView
             android:id="@android:id/list"
             android:layout_width="match_parent"

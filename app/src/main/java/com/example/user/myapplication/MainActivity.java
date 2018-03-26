@@ -1,6 +1,7 @@
 package com.example.user.myapplication;
 
 import android.app.ListActivity;
+import android.content.Intent;
 import android.net.sip.SipSession;
 import android.net.wifi.p2p.WifiP2pManager;
 import android.support.v7.app.AppCompatActivity;
@@ -43,18 +44,35 @@ public class MainActivity extends ListActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 //android.R.layout.simple_list_item_1
+//        String[] data = mPlaces;
 //        ArrayAdapter arrayAdapter = new ArrayAdapter<>(this,
 //                R.layout.layout,
 //                R.id.textView
 //                ,data);
 //        setListAdapter(arrayAdapter);
+
+//        String[] data = mPlaces;
+//        ArrayAdapter arrayAdapter = new ArrayAdapter<>(this,
+//                android.R.layout.simple_list_item_multiple_choice
+//                ,data);
+//        setListAdapter(arrayAdapter);
+
         for(int i=0; i<mPlaces.length; i++){
             HashMap<String,String> item = new HashMap<String,String>();
             item.put( "food", mFoods[i]);
             item.put( "place",mPlaces[i] );
             list.add( item );
         }
+//
+//        adapter = new SimpleAdapter(
+//                this,
+//                list,
+//                android.R.layout.simple_list_item_2,
+//
+//                new String[] { "food","place" },
+//                new int[] { android.R.id.text1, android.R.id.text2 } );
 
         adapter = new SimpleAdapter(
                 this,
@@ -64,15 +82,24 @@ public class MainActivity extends ListActivity {
                 new int[] { android.R.id.text1, android.R.id.text2 } );
 
         setListAdapter(adapter);
-
-
     }
 
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
 //        Toast.makeText(this,data[position],Toast.LENGTH_SHORT).show();
-        Toast.makeText(this,"我喜歡吃"+mPlaces[position]+"的"+mFoods[position],Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this,"我喜歡吃"+mPlaces[position]+"的"+mFoods[position],Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this,Main2Activity.class);
+        intent.putExtra("n",position);
+        startActivity(intent);
+
+
+
+
 
     }
+
+
+
+
 }
