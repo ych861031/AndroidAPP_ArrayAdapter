@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 
 public class Main2Activity extends AppCompatActivity {
@@ -102,8 +103,19 @@ public class Main2Activity extends AppCompatActivity {
     }
 
 
-
-
+    //設定回傳值,並返回
+    public void fn_like(View v){
+        Intent i = new Intent();
+        i.putExtra("Like",1);
+        setResult(RESULT_OK,i);
+        finish();
+    }
+    public void fn_dislike(View v) {
+        Intent i = new Intent();
+        i.putExtra("Like", 0);
+        setResult(RESULT_OK, i);
+        finish();
+    }
 
 
 

@@ -84,6 +84,7 @@ public class MainActivity extends ListActivity {
         setListAdapter(adapter);
     }
 
+    int index;
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
@@ -91,15 +92,25 @@ public class MainActivity extends ListActivity {
 //        Toast.makeText(this,"我喜歡吃"+mPlaces[position]+"的"+mFoods[position],Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this,Main2Activity.class);
         intent.putExtra("n",position);
-        startActivity(intent);
-
-
-
-
+        index = position;
+//        startActivity(intent);
+        startActivityForResult(intent,111);
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        switch (requestCode){
+            case 111:
+                int like = data.getIntExtra("Like",1);
+                if (like==1){
+                    Toast.makeText(MainActivity.this,"我喜歡吃"+mPlaces[index]+"的"+mFoods[index],Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(MainActivity.this,"我不喜歡吃"+mPlaces[index]+"的"+mFoods[index],Toast.LENGTH_LONG).show();
+                }
+        }
 
-
+    }
 }
