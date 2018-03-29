@@ -65,18 +65,10 @@ public class MainActivity extends ListActivity {
             item.put( "place",mPlaces[i] );
             list.add( item );
         }
-//
-//        adapter = new SimpleAdapter(
-//                this,
-//                list,
-//                android.R.layout.simple_list_item_2,
-//
-//                new String[] { "food","place" },
-//                new int[] { android.R.id.text1, android.R.id.text2 } );
+
 
         adapter = new SimpleAdapter(
-                this,
-                list,
+                this,list,
                 android.R.layout.simple_list_item_2,
                 new String[] { "food","place" },
                 new int[] { android.R.id.text1, android.R.id.text2 } );
@@ -88,18 +80,19 @@ public class MainActivity extends ListActivity {
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-//        Toast.makeText(this,data[position],Toast.LENGTH_SHORT).show();
-//        Toast.makeText(this,"我喜歡吃"+mPlaces[position]+"的"+mFoods[position],Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this,Main2Activity.class);
         intent.putExtra("n",position);
         index = position;
-//        startActivity(intent);
         startActivityForResult(intent,111);
 
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if(data==null){
+            return;
+        }
         super.onActivityResult(requestCode, resultCode, data);
 
         switch (requestCode){
